@@ -18,5 +18,5 @@ make
 
 ###RUN SIMULATION###
 ```
-./LOQUAT /path/of/input/file/name_of_project<br />
+./LOQUAT /path/of/input/file/name_of_project
 ```
