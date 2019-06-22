@@ -10,10 +10,10 @@ Ubuntu or CentOS<br />
 2. Compilation<br />
 Use the following commands
 ```
-mkdir build<br />
-cd build<br />
-cmake ..<br />
-make<br />
+mkdir build
+cd build
+cmake ..
+make
 ```
 <br />
 3. Run simulations<br />
