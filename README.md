@@ -8,12 +8,13 @@ CMAKE<br />
 Ubuntu or CentOS<br />
 <br />
 2. Compilation<br />
-<br />
-In the LOQUAT folder:<br />
+Use the following commands
+```
 mkdir build<br />
 cd build<br />
 cmake ..<br />
 make<br />
+```
 <br />
 3. Run simulations<br />
 <br />
