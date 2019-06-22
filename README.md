@@ -17,6 +17,7 @@ cmake ..
 make
 ```
 <br />
-3. Run simulations<br />
-<br />
+3. Run simulations
+```
 ./LOQUAT /path/of/input/file/name_of_project<br />
+```
