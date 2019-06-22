@@ -1,5 +1,5 @@
-# LOQUAT
-GPU-accelerated SPH solver for geotechnics
+# LOQUAT<br />
+GPU-accelerated SPH solver for geotechnics<br />
 
 1. REQUIREMENTS <br />
 <br />
@@ -8,14 +8,14 @@ BOOST<br />
 CMAKE<br />
 Ubuntu or CentOS<br />
 <br />
-2. Compilation
-
-In the LOQUAT folder:
-mkdir build
-cd build
-cmake ..
-make
-
-3. Run simulations
-
-./LOQUAT /path/of/input/file/name_of_project
+2. Compilation<br />
+<br />
+In the LOQUAT folder:<br />
+mkdir build<br />
+cd build<br />
+cmake ..<br />
+make<br />
+<br />
+3. Run simulations<br />
+<br />
+./LOQUAT /path/of/input/file/name_of_project<br />
