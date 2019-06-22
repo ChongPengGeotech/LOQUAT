@@ -1,6 +1,6 @@
-# LOQUAT<br />
-GPU-accelerated SPH solver for geotechnics<br />
-1. REQUIREMENTS <br />
+## LOQUAT
+GPU-accelerated SPH solver for geotechnics
+1. REQUIREMENTS
 <br />
 NVIDIA CUDA Toolkit<br />
 BOOST<br />
