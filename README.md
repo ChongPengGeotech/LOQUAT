@@ -8,7 +8,7 @@ BOOST<br />
 CMAKE<br />
 Ubuntu or CentOS<br />
 <br />
-###COMPILATION###
+###COMPILATION###<br />
 Use the following commands
 ```
 mkdir build
