@@ -1,13 +1,13 @@
 # LOQUAT
 GPU-accelerated SPH solver for geotechnics
 
-1. REQUIREMENTS
-
-NVIDIA CUDA Toolkit
-BOOST
-CMAKE
-Ubuntu or CentOS
-
+1. REQUIREMENTS <br />
+<br />
+NVIDIA CUDA Toolkit<br />
+BOOST<br />
+CMAKE<br />
+Ubuntu or CentOS<br />
+<br />
 2. Compilation
 
 In the LOQUAT folder:
