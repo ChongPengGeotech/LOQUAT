@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<parameters>
+  <number-of-particles type="int">76284</number-of-particles>
+  <number-of-boundary-particles type="int">47484</number-of-boundary-particles>
+  <number-of-material-particles type="int">28800</number-of-material-particles>
+  <domain-size-x type="float">6.3</domain-size-x>
+  <domain-size-y type="float">2.3</domain-size-y>
+  <domain-size-z type="float">1.3</domain-size-z>
+  <domain-min-x type="float">0</domain-min-x>
+  <domain-min-y type="float">0</domain-min-y>
+  <domain-min-z type="float">0</domain-min-z>
+  <particle-size type="float">0.05</particle-size>
+  <h-over-dr type="float">1.5</h-over-dr>
+  <reference-density type="float">1850</reference-density>
+  <speed-of-sound type="float">51.9875</speed-of-sound>
+  <cfl-number type="float">0.2</cfl-number>
+  <constitutive-model type="int">1</constitutive-model>
+  <elastic-K type="float">5e+06</elastic-K>
+  <elastic-G type="float">2.30769e+06</elastic-G>
+  <DP-kphi type="float">0.494872</DP-kphi>
+  <DP-kpsi type="float">0</DP-kpsi>
+  <DP-kcohesion type="float">0</DP-kcohesion>
+  <acceleration-x type="float">0</acceleration-x>
+  <acceleration-y type="float">0</acceleration-y>
+  <acceleration-z type="float">-9.81</acceleration-z>
+  <time-max type="float">4</time-max>
+  <time type="float">0</time>
+  <time-step type="float">0.000288531</time-step>
+  <output-frequency type="float">0.2</output-frequency>
+  <output-number type="int">0</output-number>
+  <density-shepard-filter type="int">0</density-shepard-filter>
+  <stress-shepard-filter type="int">0</stress-shepard-filter>
+  <dynamic-time-step type="int">1</dynamic-time-step>
+  <integration-method type="int">1</integration-method>
+  <viscosity-type type="int">1</viscosity-type>
+  <artificial-viscosity-alpha type="float">0.25</artificial-viscosity-alpha>
+  <artificial-pressure type="int">0</artificial-pressure>
+  <output-format type="int">2</output-format>
+</parameters>
