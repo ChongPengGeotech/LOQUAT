@@ -10,6 +10,20 @@ find_package(CUDA REQUIRED)
 include_directories(include)
 include_directories(${CUDA_INCLUDE_DIRS})
 
+set(HEADERS
+src/adami_boundary.h
+src/loquat.h
+src/loquat_io.h
+src/loquat_grid.h
+src/predictor_corrector.h
+src/field_smoothing.h
+src/particle_interaction.h
+src/tinyxml2.h
+include/types.h
+include/helper_cuda.h
+include/helper_string.h
+)
+
 set(CUDA_SOURCES
 src/adami_boundary.cu
 src/loquat.cu

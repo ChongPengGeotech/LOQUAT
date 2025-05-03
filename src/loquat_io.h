@@ -30,10 +30,10 @@
 #include <vector>
 #include <string>
 #include <ctime>
+#include <variant>
+#include <filesystem>
 #include <cuda_runtime.h>
 #include <thrust/sort.h>
-#include <boost/variant.hpp>
-#include <boost/filesystem.hpp>
 #include <types.h>
 #include "tinyxml2.h"
 
@@ -54,10 +54,10 @@ class LoquatIo
 		float4* float4_cache;
 		tensor2d* tensor2d_cache;
 
-		boost::variant<std::string, int, float> CheckParameter
+		std::variant<std::string, int, float> CheckParameter
 		(
 			std::string parameter_name,	std::map<std::string, 
-			boost::variant<std::string, int, float> > parameters_from_xml
+			std::variant<std::string, int, float> > parameters_from_xml
 		);
 
 		void SortFloat4(int np, std::vector<int> sort_idx, float4* data, float4* cache);

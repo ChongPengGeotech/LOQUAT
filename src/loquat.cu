@@ -286,10 +286,10 @@ void LoquatSph::RunSimulation(int argc, char* argv[])
 	grid->GridConfig(par_host);
 	
 	std::string path(project_name);
-	if(!boost::filesystem::exists(path))
+	if(!std::filesystem::exists(path))
 	{
 		std::cout << "Create results folder: " << path << std::endl;
-		boost::filesystem::create_directory(path);
+		std::filesystem::create_directory(path);
 	}
 
 	cudaMemcpy(par_device, par_host, sizeof(Parameters), cudaMemcpyHostToDevice);

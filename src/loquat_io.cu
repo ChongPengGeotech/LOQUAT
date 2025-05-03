@@ -53,9 +53,9 @@ LoquatIo::~LoquatIo()
 
 
 // Check if a parameter exists, if it exists, return its value
-boost::variant<std::string, int, float> LoquatIo::CheckParameter(
+std::variant<std::string, int, float> LoquatIo::CheckParameter(
 	std::string parameter_name,
-	std::map<std::string, boost::variant<std::string, int, float> > parameters_from_xml)
+	std::map<std::string, std::variant<std::string, int, float> > parameters_from_xml)
 {
 	if(parameters_from_xml.count(parameter_name) == 0)
 	{
@@ -91,39 +91,39 @@ void LoquatIo::LoadParameters()
 	}
 	
 	tinyxml2::XMLElement* xml_parameters = xml.FirstChildElement();
-	std::map<std::string, boost::variant<std::string, int, float> > parameters_from_xml;
+	std::map<std::string, std::variant<std::string, int, float> > parameters_from_xml;
 	for(tinyxml2::XMLElement* iterator = xml_parameters->FirstChildElement(); iterator != NULL; iterator = iterator->NextSiblingElement())
 	{
 		// The name of the parameter
 		std::string parameter_name(iterator->Name());
 		
 		// The actual value of the parameter
-		boost::variant<std::string, int, float> parameter_value;
+		std::variant<std::string, int, float> parameter_value;
 		if(iterator->Attribute("type", "int"))
 		{
 			parameter_value = atoi(iterator->GetText());
+			std::cout << parameter_name << " = " << std::get<int>(parameter_value) << std::endl;
 		}
 		else if(iterator->Attribute("type", "float"))
 		{
 			parameter_value = (float)atof(iterator->GetText());
+			std::cout << parameter_name << " = " << std::get<float>(parameter_value) << std::endl;
 		}
 		else
 		{
 			std::cout << "Wrong data type for " << parameter_name << "!!!" << std::endl;
             exit(EXIT_FAILURE);
 		}
-		
-		std::cout << parameter_name << " = " << parameter_value << std::endl;
 
-		parameters_from_xml.insert(std::pair<std::string, boost::variant<std::string, int, float> >(parameter_name, parameter_value));
+		parameters_from_xml.insert(std::pair<std::string, std::variant<std::string, int, float> >(parameter_name, parameter_value));
 	}
 
 	par = new Parameters;
 
 	// Particle number
-	par->np = boost::get<int>(CheckParameter("number-of-particles", parameters_from_xml));
-	par->npb = boost::get<int>(CheckParameter("number-of-boundary-particles", parameters_from_xml));
-	par->npm = boost::get<int>(CheckParameter("number-of-material-particles", parameters_from_xml));
+	par->np = std::get<int>(CheckParameter("number-of-particles", parameters_from_xml));
+	par->npb = std::get<int>(CheckParameter("number-of-boundary-particles", parameters_from_xml));
+	par->npm = std::get<int>(CheckParameter("number-of-material-particles", parameters_from_xml));
 	if(par->np != par->npb + par->npm)
 	{
 		std::cout << "Error! Wrong number of particles ..." << std::endl;
@@ -131,69 +131,69 @@ void LoquatIo::LoadParameters()
 	}
 
 	// Computational domain
-	par->domain_size_x = boost::get<float>(CheckParameter("domain-size-x", parameters_from_xml));
-	par->domain_size_y = boost::get<float>(CheckParameter("domain-size-y", parameters_from_xml));
-	par->domain_size_z = boost::get<float>(CheckParameter("domain-size-z", parameters_from_xml));
-	par->domain_min_x = boost::get<float>(CheckParameter("domain-min-x", parameters_from_xml));
-	par->domain_min_y = boost::get<float>(CheckParameter("domain-min-y", parameters_from_xml));
-	par->domain_min_z = boost::get<float>(CheckParameter("domain-min-z", parameters_from_xml));
+	par->domain_size_x = std::get<float>(CheckParameter("domain-size-x", parameters_from_xml));
+	par->domain_size_y = std::get<float>(CheckParameter("domain-size-y", parameters_from_xml));
+	par->domain_size_z = std::get<float>(CheckParameter("domain-size-z", parameters_from_xml));
+	par->domain_min_x = std::get<float>(CheckParameter("domain-min-x", parameters_from_xml));
+	par->domain_min_y = std::get<float>(CheckParameter("domain-min-y", parameters_from_xml));
+	par->domain_min_z = std::get<float>(CheckParameter("domain-min-z", parameters_from_xml));
 
 	// Computational resolution
-	par->dr = boost::get<float>(CheckParameter("particle-size", parameters_from_xml));
-	par->hdr = boost::get<float>(CheckParameter("h-over-dr", parameters_from_xml));
+	par->dr = std::get<float>(CheckParameter("particle-size", parameters_from_xml));
+	par->hdr = std::get<float>(CheckParameter("h-over-dr", parameters_from_xml));
 
 	// Material property
-	par->rho0 = boost::get<float>(CheckParameter("reference-density", parameters_from_xml));
-	par->cs = boost::get<float>(CheckParameter("speed-of-sound", parameters_from_xml));
-	par->cfl = boost::get<float>(CheckParameter("cfl-number", parameters_from_xml));
-	par->constitutive_model = boost::get<int>(CheckParameter("constitutive-model", parameters_from_xml));
+	par->rho0 = std::get<float>(CheckParameter("reference-density", parameters_from_xml));
+	par->cs = std::get<float>(CheckParameter("speed-of-sound", parameters_from_xml));
+	par->cfl = std::get<float>(CheckParameter("cfl-number", parameters_from_xml));
+	par->constitutive_model = std::get<int>(CheckParameter("constitutive-model", parameters_from_xml));
 	if(par->constitutive_model == 1) // D-P model
 	{
-		par->model_par_1 = boost::get<float>(CheckParameter("elastic-K", parameters_from_xml));
-		par->model_par_2 = boost::get<float>(CheckParameter("elastic-G", parameters_from_xml));
-		par->model_par_3 = boost::get<float>(CheckParameter("DP-kphi", parameters_from_xml));
-		par->model_par_4 = boost::get<float>(CheckParameter("DP-kpsi", parameters_from_xml));
-		par->model_par_5 = boost::get<float>(CheckParameter("DP-kcohesion", parameters_from_xml));
+		par->model_par_1 = std::get<float>(CheckParameter("elastic-K", parameters_from_xml));
+		par->model_par_2 = std::get<float>(CheckParameter("elastic-G", parameters_from_xml));
+		par->model_par_3 = std::get<float>(CheckParameter("DP-kphi", parameters_from_xml));
+		par->model_par_4 = std::get<float>(CheckParameter("DP-kpsi", parameters_from_xml));
+		par->model_par_5 = std::get<float>(CheckParameter("DP-kcohesion", parameters_from_xml));
 	}
 	else if(par->constitutive_model == 2) // Hypoplastic model (Wang 2009)
 	{
-		par->model_par_1 = boost::get<float>(CheckParameter("hypo-par-c1", parameters_from_xml));
-		par->model_par_2 = boost::get<float>(CheckParameter("hypo-par-c2", parameters_from_xml));
-		par->model_par_3 = boost::get<float>(CheckParameter("hypo-par-c3", parameters_from_xml));
-		par->model_par_4 = boost::get<float>(CheckParameter("hypo-par-c4", parameters_from_xml));
-		par->model_par_5 = boost::get<float>(CheckParameter("cohesion", parameters_from_xml));
+		par->model_par_1 = std::get<float>(CheckParameter("hypo-par-c1", parameters_from_xml));
+		par->model_par_2 = std::get<float>(CheckParameter("hypo-par-c2", parameters_from_xml));
+		par->model_par_3 = std::get<float>(CheckParameter("hypo-par-c3", parameters_from_xml));
+		par->model_par_4 = std::get<float>(CheckParameter("hypo-par-c4", parameters_from_xml));
+		par->model_par_5 = std::get<float>(CheckParameter("cohesion", parameters_from_xml));
 	}
 	
 	// Boundary condition
-	par->acc_x = boost::get<float>(CheckParameter("acceleration-x", parameters_from_xml));
-	par->acc_y = boost::get<float>(CheckParameter("acceleration-y", parameters_from_xml));
-	par->acc_z = boost::get<float>(CheckParameter("acceleration-z", parameters_from_xml));
+	par->acc_x = std::get<float>(CheckParameter("acceleration-x", parameters_from_xml));
+	par->acc_y = std::get<float>(CheckParameter("acceleration-y", parameters_from_xml));
+	par->acc_z = std::get<float>(CheckParameter("acceleration-z", parameters_from_xml));
 
 	// Time related
-	par->time_max = boost::get<float>(CheckParameter("time-max", parameters_from_xml));
-	par->time = static_cast<double>(boost::get<float>(CheckParameter("time", parameters_from_xml)));
-	par->dt = boost::get<float>(CheckParameter("time-step", parameters_from_xml));
-	par->output_frequency = boost::get<float>(CheckParameter("output-frequency", parameters_from_xml));
-	par->output_number = boost::get<int>(CheckParameter("output-number", parameters_from_xml));
+	par->time_max = std::get<float>(CheckParameter("time-max", parameters_from_xml));
+	par->time = static_cast<double>(std::get<float>(CheckParameter("time", parameters_from_xml)));
+	par->dt = std::get<float>(CheckParameter("time-step", parameters_from_xml));
+	par->output_frequency = std::get<float>(CheckParameter("output-frequency", parameters_from_xml));
+	par->output_number = std::get<int>(CheckParameter("output-number", parameters_from_xml));
 
 	//Computational configuration
-	par->density_shepard_filter = boost::get<int>(CheckParameter("density-shepard-filter", parameters_from_xml));
-	par->stress_shepard_filter = boost::get<int>(CheckParameter("stress-shepard-filter", parameters_from_xml));
-	par->dynamic_time_step = boost::get<int>(CheckParameter("dynamic-time-step", parameters_from_xml));
-	par->integration_method = boost::get<int>(CheckParameter("integration-method", parameters_from_xml));
-	par->viscosity_type = boost::get<int>(CheckParameter("viscosity-type", parameters_from_xml));
+	par->density_shepard_filter = std::get<int>(CheckParameter("density-shepard-filter", parameters_from_xml));
+	par->stress_shepard_filter = std::get<int>(CheckParameter("stress-shepard-filter", parameters_from_xml));
+	par->dynamic_time_step = std::get<int>(CheckParameter("dynamic-time-step", parameters_from_xml));
+	par->integration_method = std::get<int>(CheckParameter("integration-method", parameters_from_xml));
+	par->viscosity_type = std::get<int>(CheckParameter("viscosity-type", parameters_from_xml));
 	if(par->viscosity_type == 1)
 	{
-		par->artificial_viscosity_alpha = boost::get<float>(CheckParameter("artificial-viscosity-alpha", parameters_from_xml));
+		par->artificial_viscosity_alpha = std::get<float>(CheckParameter("artificial-viscosity-alpha", parameters_from_xml));
 	}
 
-	par->artificial_pressure = boost::get<int>(CheckParameter("artificial-pressure", parameters_from_xml));
+	par->artificial_pressure = std::get<int>(CheckParameter("artificial-pressure", parameters_from_xml));
 	if(par->artificial_pressure == 1)
 	{
-		par->artificial_pressure_coefficient = boost::get<float>(CheckParameter("artificial-pressure-coefficient", parameters_from_xml));
+		par->artificial_pressure_coefficient = std::get<float>(CheckParameter("artificial-pressure-coefficient", parameters_from_xml));
 	}
 
-	par->output_format = boost::get<int>(CheckParameter("output-format", parameters_from_xml));
+	par->output_format = std::get<int>(CheckParameter("output-format", parameters_from_xml));
 
 	std::cout << " " << std::endl;
 	std::cout << "Finish reading parameters" << std::endl;

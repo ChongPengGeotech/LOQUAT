@@ -30,10 +30,10 @@
 #include <ctime>
 #include <vector>
 #include <string>
+#include <variant>
+#include <string>
+#include <filesystem>
 #include <cuda_runtime.h>
-#include <boost/variant.hpp>
-#include <boost/algorithm/string.hpp>
-#include <boost/filesystem.hpp>
 #include <types.h>
 #include "tinyxml2.h"
 #include "loquat_io.h"
