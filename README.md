@@ -3,18 +3,18 @@ GPU-accelerated SPH solver for geotechnics
 
 ###REQUIREMENTS###<br />
 NVIDIA CUDA Toolkit<br />
-BOOST<br />
 CMAKE<br />
-Ubuntu or CentOS<br />
+Ubuntu / CentOS / Windows<br />
 
 ###COMPILATION###<br />
-Use the following commands
+Under Linux: Use the following commands
 ```
 mkdir build
 cd build
 cmake ..
 make
 ```
+Under Windows: Use CMake to generate Visual Studio solutions.
 
 ###RUN SIMULATION###
 ```
